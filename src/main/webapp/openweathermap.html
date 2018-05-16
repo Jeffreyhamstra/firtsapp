@@ -1,0 +1,138 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Openweathermap</title>
+<link rel="stylesheet" type="text/css" href="weatherStyle.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.8.0/css/flag-icon.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<div id="frame">
+		<div id="myLocation">
+			<div class="title"><h3>Mijn locatie</h3></div><br>
+			<label>Landcode:</label>
+			<span id="landcode"></span><br>
+			<label>Land:</label>
+			<span id="land"></span><br>
+			<label>Regio:</label>
+			<span id="regio"></span><br>
+			<label>Stad:</label>
+			<span id="stad"></span><br>
+			<label>Postcode:</label>
+			<span id="postcode"></span><br>
+			<label>Latitude:</label>
+			<span id="latitude"></span><br>
+			<label>Longitude:</label>
+			<span id="longitude"></span><br>
+			<label>Ip:</label>
+			<span id="ip"></span><br>
+			
+		</div>
+		<div id="weatherInfo">
+			<div class="title">
+				<h3 id="city"></h3><span id="flag" class=""></span>
+			</div><br>
+			<label>Temperatuur:</label>
+			<span id="temperatuur"></span><div id="weatherConditionSpan"></div><br>
+			<label>Luchtvochtigheid:</label>
+			<span id="luchtvochtigheid"></span><br>
+			<label>Windsnelheid:</label>
+			<span id="windsnelheid"></span><br>
+			<label>Windrichting:</label>
+			<span id="windrichting"></span><br>
+			<label>Zonsopgang:</label>
+			<span id="zonsopgang"></span><br>
+			<label>Zonsonderegang:</label>
+			<span id="zonsondergang"></span><br>
+		</div><br>
+		<div id="countryList">
+			<div class="title"><h3>Beschikbare vakantiebestemmingen</h3></div><br>
+			<table id="myTable">
+				<tr>
+					<th>Land</th>
+					<th>Hoofdstad</th>
+					<th>Regio</th>
+					<th>Oppervlakte</th>
+					<th>Inwoners</th>
+				</tr>
+			</table>
+		</div>
+		<br>
+	</div>
+	<script type="text/javascript">
+	function initPage(){
+		fetch('https://ipapi.co/json/').then(function(response) {
+			return response.json();
+		}).then(function(myJson){
+			console.log(myJson.city);
+			document.getElementById("landcode").innerHTML = myJson.country;
+			document.getElementById("land").innerHTML = myJson.country_name;
+			document.getElementById("regio").innerHTML = myJson.region;
+			document.getElementById("stad").innerHTML = myJson.city;
+			document.getElementById("postcode").innerHTML = myJson.postal;
+			document.getElementById("latitude").innerHTML = myJson.latitude;
+			document.getElementById("longitude").innerHTML = myJson.longitude;
+			document.getElementById("ip").innerHTML = myJson.ip;
+			showWeather(myJson.city, myJson.country);
+			loadCountries();
+		})
+	}
+	
+	function showWeather(city, country){
+		fetch('https://api.openweathermap.org/data/2.5/weather?q='+ city + '&appid=5eb61527e7f40d665e488cf8119fc544&units=metric')
+		.then(function(response){
+			return response.json();
+		}).then(function(myJson){
+			document.getElementById("city").innerHTML = "Het weer in " + city;
+			document.getElementById("flag").className = "flag-icon flag-icon-" + country;
+			document.getElementById("temperatuur").innerHTML = myJson.main.temp;
+			document.getElementById("luchtvochtigheid").innerHTML = myJson.main.humidity;
+			document.getElementById("windsnelheid").innerHTML = myJson.wind.speed;
+			document.getElementById("windrichting").innerHTML = myJson.wind.deg;
+			document.getElementById("zonsopgang").innerHTML = myJson.sys.sunrise;
+			document.getElementById("zonsondergang").innerHTML = myJson.sys.sunset;
+			var imgTag = "<img src='https://openweathermap.org/img/w/"+ myJson.weather.icon +".png'/>";
+			document.querySelector("#weatherConditionSpan").innerHTML = imgTag;
+
+		})
+	}
+	
+	function loadCountries() {
+		fetch('http://localhost:8080/firstapp/restservices/countries').then(function(response){
+			return response.json();
+		}).then(function(myJson){
+			// Create tr en td
+			var i = 1;
+			for (let value of myJson) {
+				var table = document.getElementById("myTable");
+			    var row = table.insertRow(i);
+			    var cell1 = row.insertCell(0);
+			    var cell2 = row.insertCell(1);
+			    var cell3 = row.insertCell(2);
+			    var cell4 = row.insertCell(3);
+			    var cell5 = row.insertCell(4);
+			    cell1.innerHTML = value.Name;
+			    cell1.value = value.Code;
+			    cell2.innerHTML = value.Capital;
+			    cell3.innerHTML = value.Region;
+			    cell4.innerHTML = value.Surface;
+			    cell5.innerHTML = value.Population;
+			    row.addEventListener("click", this.changeWeatherInfo);
+			    
+				console.log(value);
+				i += 1;
+			}
+			
+		})
+	}
+	function changeWeatherInfo(e){
+		var city = this.cells.item(1).innerHTML;
+		var countryCode = this.cells.item(0).value.toLowerCase();
+		showWeather(city, countryCode);
+		//alert(this.cells.item(1).innerHTML);
+	} 	
+	window.onload = initPage;
+	</script>
+	<!-- Hier komen jouw script-tags -->
+</body>
+</html>

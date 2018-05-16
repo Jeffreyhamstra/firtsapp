@@ -1,0 +1,74 @@
+<html>
+   <head>
+   <style>
+   .btn {
+   		width: 50px;
+   		height: 50px;
+   		border-radius: 50%;
+   		background: #333333;
+   		color: white;
+   		-moz-transition: all 0.3s ease-out;
+  		-o-transition: all 0.3s ease-out;
+  		transition: all 0.3s ease-out;
+   }
+   
+   .btn:hover {
+   		background: #555555;
+   }
+   
+   .operator {
+   		background: #FF9233;
+   		-moz-transition: all 0.3s ease-out;
+  		-o-transition: all 0.3s ease-out;
+  		transition: all 0.3s ease-out;
+   }
+   .operator:hover {
+   		background: #FF3A00;
+   }
+   
+   #display {
+    		width: 200px;
+    		height: 50px;
+    		font-size: 22px;
+    		text-align: right;
+    		padding: 10px;
+    		margin: 0 10px 5px;
+    }
+   </style>
+   </head>
+   <body>
+      <form name="rekenmachine">
+         <table>
+            <tr>
+               <td colspan="4">
+                  <input type="text" name="display" id="display" disabled>
+               </td>
+            </tr>
+            <tr>
+               <td><input class="btn" type="button" name="one" value="1" onclick="rekenmachine.display.value += '1'"></td>
+               <td><input class="btn" type="button" name="two" value="2" onclick="rekenmachine.display.value += '2'"></td>
+               <td><input class="btn" type="button" name="three" value="3" onclick="rekenmachine.display.value += '3'"></td>
+               <td><input class="btn operator" type="button" name="plus" value="+" onclick="rekenmachine.display.value += '+'"></td>
+            </tr>
+            <tr>
+               <td><input class="btn" type="button" name="four" value="4" onclick="rekenmachine.display.value += '4'"></td>
+               <td><input class="btn" type="button" name="five" value="5" onclick="rekenmachine.display.value += '5'"></td>
+               <td><input class="btn" type="button" name="six" value="6" onclick="rekenmachine.display.value += '6'"></td>
+               <td><input class="btn operator" type="button" name="min" value="-" onclick="rekenmachine.display.value += '-'"></td>
+            </tr>
+            <tr>
+               <td><input class="btn" type="button" name="seven" value="7" onclick="rekenmachine.display.value += '7'"></td>
+               <td><input class="btn" type="button" name="eight" value="8" onclick="rekenmachine.display.value += '8'"></td>
+               <td><input class="btn" type="button" name="nine" value="9" onclick="rekenmachine.display.value += '9'"></td>
+               <td><input class="btn operator" type="button" name="times" value="x" onclick="rekenmachine.display.value += '*'"></td>
+            </tr>
+            <tr>
+               <td><input class="btn" type="button" id="clear" name="clear" value="c" onclick="rekenmachine.display.value = '0'"></td>
+               <td><input class="btn" type="button" name="zero" value="0" onclick="rekenmachine.display.value += '0'"></td>
+               <td><input class="btn" type="button" name="doit" value="=" onclick="rekenmachine.display.value = eval(rekenmachine.display.value)"></td>
+               <td><input class="btn operator" type="button" name="div" value="/" onclick="rekenmachine.display.value += '/'"></td>
+            </tr>
+         </table>
+      </form>
+   </body>
+</html>

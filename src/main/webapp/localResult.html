@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>localStorage</title>
+</head>
+<body>
+	<label id="result"></label><br>
+	<button onclick="myFunction()">Click me</button>
+	<script>
+		function myFunction() {
+			document.getElementById("result").innerHTML = localStorage.getItem("keyup");
+		}
+		window.onload = myFunction;
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>localStorage</title>
+</head>
+<body>
+	<input type="text" id="fname" onkeyup="myFunction()">
+	<div id="result"></div>
+	<script>
+		function myFunction() {
+			var x = document.getElementById("fname").value;
+			localStorage.setItem("keyup",x);
+			document.getElementById("result").innerHTML = localStorage.getItem("keyup");
+		}
+	</script>
+</body>
+</html>

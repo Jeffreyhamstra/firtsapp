@@ -1,0 +1,67 @@
+body {
+	background-color: #D7D5CE;
+	margin: 0;
+}
+#frame {
+	max-width: 1200px;
+	margin: 0 auto;	
+}
+
+.title {
+	width: 100%;
+	background: #A0998E;
+	height: 40px;
+	line-height: 40px;
+	color: white;
+	position: relative;
+}
+
+.title h3 {
+	margin-left: 10px;
+}
+
+label {
+	width: 200px;
+	float: left;
+	padding-left: 10px;
+}
+
+#flag {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+#weatherConditionSpan {
+	float: right;
+	margin-right: 10px;
+}
+
+#myTable td, th {
+	width: 200px;
+	border: 1px solid black;
+	text-align: left;
+}
+
+#myTable { border-collapse: collapse; width: 100%;}
+#myTable tr { transition: all 0.3s ease;}
+#myTable tr:nth-child(even){ background-color: #A0998F;}
+#myTable tr:hover {background-color: #EF9F46; color: white;}
+#myTable th { background-color: #45413b; color: white;}
+
+@media only screen and (min-width: 700px) {
+	#myLocation {
+		width: 350px;
+		float: left;
+		position: relative;
+		margin-right: 50px;
+	}
+	#weatherInfo {
+		min-width: 300px;
+		position: relative;
+		overflow: hidden;
+	}
+	#countryList {
+		margin-top: 50px;
+	}
+}

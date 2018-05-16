@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="rekenmachineStyle.css">
+<title>JavaScript Rekenmachine</title>
+<body>
+	<div id="frame">
+	<form name="rekenmachine">
+		<!-- <div id="display"></div>-->
+		<input type="text" name="display" id="display" disabled>
+		<button onclick="rekenmachine.display.value += '7'" id="btn_7" value="7">7</button>
+		<button onclick="rekenmachine.display.value += '8'" id="btn_8" value="8">8</button>
+		<button onclick="rekenmachine.display.value += '9'" id="btn_9" value="9">9</button>
+		<button onclick="rekenmachine.display.value += '/'" id="btn_div" value="/">/</button>
+		<button onclick="rekenmachine.display.value += '4'" id="btn_4" value="4">4</button>
+		<button onclick="rekenmachine.display.value += '5'" id="btn_5" value="5">5</button>
+		<button onclick="rekenmachine.display.value += '6'" id="btn_6" value="6">6</button>
+		<button onclick="rekenmachine.display.value += '*'" id="btn_prod" value="*">*</button>
+		<button onclick="rekenmachine.display.value += '1'" id="btn_1" value="1">1</button>
+		<button onclick="rekenmachine.display.value += '2'" id="btn_2" value="2">2</button>
+		<button onclick="rekenmachine.display.value += '3'" id="btn_3" value="3">3</button>
+		<button onclick="rekenmachine.display.value += '-'" id="btn_min" value="-">-</button>
+		<button onclick="rekenmachine.display.value = '0'" id="btn_clear" value="clear">C</button>
+		<button onclick="rekenmachine.display.value += '0'" id="btn_0" value="0">0</button>
+		<button onclick="rekenmachine.display.value = eval(rekenmachine.display.value)" id="btn_eq" value="=">=</button>
+		<button onclick="rekenmachine.display.value += '+'" id="btn_plus" value="+">+</button>
+	</form>
+	</div>
+	<script src="rekenmachine.js"></script>
+</body>
+</html>
